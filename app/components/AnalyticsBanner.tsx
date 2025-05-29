@@ -2,18 +2,15 @@
 
 import React, { useEffect, useState } from 'react'
 
-// Junior dev mistake: No proper analytics interface, just any
+
 const AnalyticsBanner = (props: any) => {
   const [isVisible, setIsVisible] = useState(true)
   const [impressionCount, setImpressionCount] = useState(0)
 
-  // Junior dev mistake: Firing analytics on EVERY render without any controls
+
   useEffect(() => {
-    // Simulating analytics call - this would be expensive in real world
     console.log('🔥 ANALYTICS EVENT FIRED: Banner Impression')
     console.log('📊 Sending data to analytics service...')
-    
-    // Junior dev mistake: No debouncing, no user consent check, no rate limiting
     fireAnalyticsEvent('banner_impression', {
       timestamp: new Date().toISOString(),
       userId: 'user_' + Math.random().toString(36).substr(2, 9),
@@ -26,30 +23,12 @@ const AnalyticsBanner = (props: any) => {
       randomData: Math.random(),
       serverTimestamp: Date.now()
     })
-    
-    // Junior dev mistake: Incrementing counter on every effect run
     setImpressionCount(prev => prev + 1)
-  },[]) // Junior dev mistake: No dependency array means this runs on EVERY render
+  },[]) 
 
-  // Junior dev mistake: Another analytics call without proper controls
-  useEffect(() => {
-    const timer = setTimeout(() => {
-      console.log('🔥 ANALYTICS EVENT FIRED: Banner View Duration')
-      fireAnalyticsEvent('banner_view_duration', {
-        duration: '3_seconds',
-        stillVisible: isVisible
-      })
-    }, 3000)
 
-    return () => clearTimeout(timer)
-  }, [isVisible]) // This will fire every time visibility changes
-
-  // Junior dev mistake: Simulating expensive analytics call
   const fireAnalyticsEvent = (eventName: string, data: any) => {
-    // In real world, this would be an API call to analytics service
-    // Each call costs money and uses bandwidth
     console.log(`💸 EXPENSIVE ANALYTICS CALL: ${eventName}`, data)
-    
     // Simulating network request
     fetch('/api/analytics', {
       method: 'POST',

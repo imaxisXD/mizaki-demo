@@ -1,10 +1,7 @@
 'use client'
-
 import React, { useState, useEffect } from 'react'
 
-// Junior dev mistake: Not using TypeScript properly, any types everywhere
 const UserProfile = (props: any) => {
-  // Junior dev mistake: Too many useState hooks instead of using a single object
   const [name, setName] = useState('')
   const [email, setEmail] = useState('')
   const [age, setAge] = useState(0)
@@ -16,9 +13,8 @@ const UserProfile = (props: any) => {
   const [tempEmail, setTempEmail] = useState('')
   const [tempAge, setTempAge] = useState(0)
 
-  // Junior dev mistake: useEffect without proper dependencies
-  useEffect(() => {
     // Simulating data fetch
+  useEffect(() => {
     setName('John Doe')
     setEmail('john@example.com')
     setAge(25)
