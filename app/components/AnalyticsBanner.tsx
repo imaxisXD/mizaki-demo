@@ -24,7 +24,7 @@ const AnalyticsBanner = (props: any) => {
       serverTimestamp: Date.now()
     })
     setImpressionCount(prev => prev + 1)
-  },[]) 
+  }) 
 
 
   const fireAnalyticsEvent = (eventName: string, data: any) => {
